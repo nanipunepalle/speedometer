@@ -11,6 +11,7 @@
 		7BD2903B2685FCB100C29ACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD2903A2685FCB100C29ACD /* ContentView.swift */; };
 		7BD2903D2685FCB400C29ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2903C2685FCB400C29ACD /* Assets.xcassets */; };
 		7BD290402685FCB400C29ACD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2903F2685FCB400C29ACD /* Preview Assets.xcassets */; };
+		7BD290482686026D00C29ACD /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD290472686026D00C29ACD /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		7BD2903C2685FCB400C29ACD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BD2903F2685FCB400C29ACD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BD290412685FCB400C29ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BD290472686026D00C29ACD /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				7BD2903C2685FCB400C29ACD /* Assets.xcassets */,
 				7BD290412685FCB400C29ACD /* Info.plist */,
 				7BD2903E2685FCB400C29ACD /* Preview Content */,
+				7BD290472686026D00C29ACD /* LocationController.swift */,
 			);
 			path = speedometer;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BD2903B2685FCB100C29ACD /* ContentView.swift in Sources */,
+				7BD290482686026D00C29ACD /* LocationController.swift in Sources */,
 				7BD290392685FCB100C29ACD /* speedometerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
