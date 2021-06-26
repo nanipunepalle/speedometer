@@ -20,6 +20,11 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
             objectWillChange.send(self)
         }
     }
+    var speedProgress: Double = 0 {
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
     
     override init() {
         super.init()
@@ -54,14 +59,18 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if(locationManager.location!.speed > 0){
-            speed = locationManager.location!.speed
+            speed = locationManager.location!.speed*3.6
+            if(speed>200){
+                speedProgress = 200
+            }
+            else{
+                speedProgress = speed
+            }
         }
         else{
             speed = 0
         }
-        
 //        print(locationManager.location!.speedAccuracy)
-//        print(speed)
         objectWillChange.send(self)
     }
     
