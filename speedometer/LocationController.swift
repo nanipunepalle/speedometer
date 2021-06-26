@@ -69,6 +69,7 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
         }
         else{
             speed = 0
+            speedProgress = 0
         }
 //        print(locationManager.location!.speedAccuracy)
         objectWillChange.send(self)
