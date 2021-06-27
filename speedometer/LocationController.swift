@@ -29,6 +29,9 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
     override init() {
         super.init()
         setupLocationService()
+//        withAnimation(Animation.easeInOut(duration: 2)) {
+//            speed = 100
+//        }
     }
     
     
@@ -59,17 +62,21 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if(locationManager.location!.speed > 0){
-            speed = locationManager.location!.speed*3.6
-            if(speed>200){
-                speedProgress = 200
-            }
-            else{
-                speedProgress = speed
+            withAnimation(Animation.easeInOut(duration: 2)) {
+                speed = locationManager.location!.speed*3.6
+                if(speed>200){
+                    speedProgress = 200
+                }
+                else{
+                    speedProgress = speed
+                }
             }
         }
         else{
-            speed = 0
-            speedProgress = 0
+            withAnimation(Animation.easeInOut(duration: 2)) {
+                speed = 0
+                speedProgress = 0
+            }
         }
 //        print(locationManager.location!.speedAccuracy)
         objectWillChange.send(self)
