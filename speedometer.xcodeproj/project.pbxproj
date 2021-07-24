@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B2A50A026AC36CE0071EACD /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A509F26AC36CE0071EACD /* SwiftUIView.swift */; };
+		7B2A50A326AC3E7B0071EACD /* units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A50A226AC3E7B0071EACD /* units.swift */; };
 		7BD290392685FCB100C29ACD /* speedometerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD290382685FCB100C29ACD /* speedometerApp.swift */; };
 		7BD2903B2685FCB100C29ACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD2903A2685FCB100C29ACD /* ContentView.swift */; };
 		7BD2903D2685FCB400C29ACD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2903C2685FCB400C29ACD /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B2A509F26AC36CE0071EACD /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		7B2A50A226AC3E7B0071EACD /* units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = units.swift; sourceTree = "<group>"; };
 		7BD290352685FCB100C29ACD /* speedometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = speedometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD290382685FCB100C29ACD /* speedometerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = speedometerApp.swift; sourceTree = "<group>"; };
 		7BD2903A2685FCB100C29ACD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +39,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B2A509D26AC34070071EACD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7BD2903A2685FCB100C29ACD /* ContentView.swift */,
+				7B2A509F26AC36CE0071EACD /* SwiftUIView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7B2A509E26AC341D0071EACD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7BD290472686026D00C29ACD /* LocationController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7B2A50A126AC3E5F0071EACD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A50A226AC3E7B0071EACD /* units.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7BD2902C2685FCB100C29ACD = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +83,13 @@
 		7BD290372685FCB100C29ACD /* speedometer */ = {
 			isa = PBXGroup;
 			children = (
+				7B2A50A126AC3E5F0071EACD /* Models */,
+				7B2A509E26AC341D0071EACD /* Controllers */,
+				7B2A509D26AC34070071EACD /* Views */,
 				7BD290382685FCB100C29ACD /* speedometerApp.swift */,
-				7BD2903A2685FCB100C29ACD /* ContentView.swift */,
 				7BD2903C2685FCB400C29ACD /* Assets.xcassets */,
 				7BD290412685FCB400C29ACD /* Info.plist */,
 				7BD2903E2685FCB400C29ACD /* Preview Content */,
-				7BD290472686026D00C29ACD /* LocationController.swift */,
 			);
 			path = speedometer;
 			sourceTree = "<group>";
@@ -143,6 +173,8 @@
 			files = (
 				7BD2903B2685FCB100C29ACD /* ContentView.swift in Sources */,
 				7BD290482686026D00C29ACD /* LocationController.swift in Sources */,
+				7B2A50A326AC3E7B0071EACD /* units.swift in Sources */,
+				7B2A50A026AC36CE0071EACD /* SwiftUIView.swift in Sources */,
 				7BD290392685FCB100C29ACD /* speedometerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@ import CoreLocation
 import SwiftUI
 import Combine
 
+
 class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     let objectWillChange = PassthroughSubject<LocationController, Never>()
@@ -25,6 +26,14 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
             objectWillChange.send(self)
         }
     }
+    
+    var unit: Unit = .KMPH {
+        didSet{
+            objectWillChange.send(self)
+        }
+    }
+    
+    
     
     override init() {
         super.init()
@@ -47,6 +56,11 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
         print(locationManager.requestLocation())
     }
     
+    func changeUnits(unit:Unit){
+        self.unit = unit
+        objectWillChange.send(self)
+    }
+    
     private func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         print("a")
         if status != CLAuthorizationStatus.denied{
@@ -63,7 +77,13 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if(locationManager.location!.speed > 0){
             withAnimation(Animation.easeInOut(duration: 2)) {
-                speed = locationManager.location!.speed*3.6
+                if(self.unit == .KMPH){
+                    speed = locationManager.location!.speed*3.6
+                }
+                else{
+                    speed = locationManager.location!.speed*2.23694
+                }
+                
                 if(speed>200){
                     speedProgress = 200
                 }
