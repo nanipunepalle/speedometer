@@ -13,13 +13,14 @@ struct ContentView: View {
     @State var units = "KMPH"
     
     @ObservedObject var locationController: LocationController
+//    @ObservedObject
     
     var body: some View {
         NavigationView {
             VStack {
-//                Spacer()
-//                Text("SpeedoMeter")
-//                    .padding()
+                //                Spacer()
+                //                Text("SpeedoMeter")
+                //                    .padding()
                 Spacer()
                 
                 ZStack {
@@ -34,12 +35,12 @@ struct ContentView: View {
                             .stroke(Color.green.opacity(0.5),lineWidth: 55)
                             .frame(width: 300, height: 300, alignment: .center)
                             .modifier(CircularView(speed: Int(locationController.speedProgress), colo: Color.green.opacity(0.5)))
-                            : Circle()
+                        : Circle()
                             .trim(from: 0, to:CGFloat(locationController.speedProgress*0.004))
                             .stroke(Color.red.opacity(0.5),lineWidth: 55)
                             .frame(width: 300, height: 300, alignment: .center)
                             .modifier(CircularView(speed: Int(locationController.speedProgress), colo: Color.red.opacity(0.5)))
-    //                        .animation(.easeIn)
+                        //                        .animation(.easeIn)
                     }.rotationEffect(.init(degrees: 126))
                     ZStack(alignment:.bottom){
                         
@@ -49,7 +50,7 @@ struct ContentView: View {
                     }
                     .offset(y:-50)
                     .rotationEffect(.init(degrees: Double(-145+Int(locationController.speedProgress*1.45))))
-    //                .animation(.easeIn)
+                    //                .animation(.easeIn)
                     .modifier(RectangleView(speed: Int(locationController.speedProgress)))
                     
                 }
@@ -58,24 +59,33 @@ struct ContentView: View {
                         .font(Font.system(size:130, design: .default))
                         .modifier(SpeedNumberView(speed: Int(locationController.speed)))
                     locationController.unit == Unit.KMPH ? Text("KMPH").font(Font.system(size:30, design: .default)) : Text("MPH").font(Font.system(size:30, design: .default))
-//                    Text(locationController.unit)
-//                        .font(Font.system(size:30, design: .default))
+                    //                    Text(locationController.unit)
+                    //                        .font(Font.system(size:30, design: .default))
                 }
                 Spacer()
+            }
+            .alert(isPresented:$locationController.locationStatus) {
+                Alert(title: Text("Location permission required"), message: Text("Go to settings app"), primaryButton: .default(Text("Open Settings"), action: {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                }), secondaryButton: .destructive(Text("Cancel")))
             }
             .navigationBarTitle("Speedometer",displayMode: .inline)
             .navigationBarItems(
                 trailing:
-                    Button(action: {showSheet=true}, label: {
+                    Button(action: {
+                        showSheet=true
+                        print(locationController.locationStatus)
+                    }, label: {
                         Image(systemName: "gearshape")
                             .resizable()
                     })
                     .foregroundColor(.primary)
             )
-        }.actionSheet(isPresented: $showSheet, content: {
+        }
+        .actionSheet(isPresented: $showSheet, content: {
             ActionSheet(title: Text("Units"),
                         buttons: [Alert.Button.default(Text("KMPH"), action: {
-                            locationController.changeUnits(unit: Unit.KMPH)
+                locationController.changeUnits(unit: Unit.KMPH)
             }),Alert.Button.default(Text("MPH"), action: {
                 locationController.changeUnits(unit: Unit.MPH)
             }),.cancel(Text("Dismiss"))])
@@ -92,12 +102,12 @@ struct ContentView_Previews: PreviewProvider {
 
 struct SpeedNumberView: AnimatableModifier {
     var speed: Int
-
+    
     var animatableData: CGFloat {
         get { CGFloat(speed) }
         set { speed = Int(newValue) }
     }
-
+    
     func body(content: Content) -> some View {
         Text(String(speed))
             .font(Font.system(size:130, design: .default))
@@ -107,12 +117,12 @@ struct SpeedNumberView: AnimatableModifier {
 struct CircularView: AnimatableModifier {
     var speed: Int
     var colo: Color
-
+    
     var animatableData: CGFloat {
         get { CGFloat(speed) }
         set { speed = Int(newValue) }
     }
-
+    
     func body(content: Content) -> some View {
         Circle()
             .trim(from: 0, to:CGFloat(Double(speed)*0.004))
@@ -123,12 +133,12 @@ struct CircularView: AnimatableModifier {
 
 struct RectangleView: AnimatableModifier {
     var speed: Int
-
+    
     var animatableData: CGFloat {
         get { CGFloat(speed) }
         set { speed = Int(newValue) }
     }
-
+    
     func body(content: Content) -> some View {
         ZStack(alignment:.bottom){
             
@@ -138,6 +148,24 @@ struct RectangleView: AnimatableModifier {
         }
         .offset(y:-50)
         .rotationEffect(.init(degrees: Double(-145+Int(Double(speed)*1.45))))
-//        .animation(.easeIn)
+        //        .animation(.easeIn)
     }
 }
+
+
+//struct alertView: View {
+//    @ObservedObject var locationController: LocationController
+//    //    @State private var showingAlert = true
+//
+//    var body: some View {
+//        Text("")
+//            .alert(isPresented: $locationController.locationStatus) {
+//                Alert(title: Text("Location permission required"), message: Text("Go to settings app"), primaryButton: .default(Text("Open Settings"), action: {
+//                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+//                }), secondaryButton: .destructive(Text("Cancel")))
+//            }
+//
+//    }
+//}
+
+//UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)

@@ -14,6 +14,7 @@ import Combine
 class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     let objectWillChange = PassthroughSubject<LocationController, Never>()
+    @Published var locationStatus: Bool = true
 
     
     var speed: Double = 0 {
@@ -69,12 +70,23 @@ class LocationController: NSObject, ObservableObject, CLLocationManagerDelegate 
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+//        print(manager.authorizationStatus.rawValue)
+//        print(locationManager.authorizationStatus.rawValue)
+        if(manager.authorizationStatus.rawValue != 4 && manager.authorizationStatus.rawValue != 3){
+            print("aaaa")
+            locationStatus = true
+            manager.requestWhenInUseAuthorization()
+        }
+        else{
+            locationStatus = false
+        }
 //        if status != CLAuthorizationStatus.denied{
             locationManager.startUpdatingLocation()
 //        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if(locationManager.location!.speed > 0){
             withAnimation(Animation.easeInOut(duration: 2)) {
                 if(self.unit == .KMPH){
